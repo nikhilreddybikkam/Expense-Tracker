@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL || '';
+
 const ExpenseContext = createContext();
 
 export const useExpense = () => useContext(ExpenseContext);
@@ -30,8 +32,8 @@ export const ExpenseProvider = ({ children }) => {
       const monthQuery = selectedMonth ? `?month=${selectedMonth}` : '';
       
       const [txRes, summaryRes] = await Promise.all([
-        axios.get(`/api/transactions${monthQuery}`),
-        axios.get(`/api/transactions/summary${monthQuery}`)
+        axios.get(`${API}/api/transactions${monthQuery}`),
+        axios.get(`${API}/api/transactions/summary${monthQuery}`)
       ]);
 
       setTransactions(txRes.data);
@@ -52,7 +54,7 @@ export const ExpenseProvider = ({ children }) => {
   // Add a new transaction (POST)
   const addTransaction = async (data) => {
     try {
-      const response = await axios.post('/api/transactions', data);
+      const response = await axios.post(`${API}/api/transactions`, data);
       showMessage('Transaction added successfully!');
       fetchData();
       return { success: true, data: response.data };
@@ -66,7 +68,7 @@ export const ExpenseProvider = ({ children }) => {
   // Update transaction (PUT)
   const updateTransaction = async (id, data) => {
     try {
-      const response = await axios.put(`/api/transactions/${id}`, data);
+      const response = await axios.put(`${API}/api/transactions/${id}`, data);
       showMessage('Transaction updated successfully!');
       fetchData();
       return { success: true, data: response.data };
@@ -80,7 +82,7 @@ export const ExpenseProvider = ({ children }) => {
   // Delete transaction (DELETE)
   const deleteTransaction = async (id) => {
     try {
-      await axios.delete(`/api/transactions/${id}`);
+      await axios.delete(`${API}/api/transactions/${id}`);
       showMessage('Transaction deleted successfully');
       fetchData();
       return { success: true };
