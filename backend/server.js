@@ -368,8 +368,8 @@ async function seedInitialData() {
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
   connectDB().then(async () => {
     await seedInitialData();
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running at http://127.0.0.1:${PORT}`);
     });
   }).catch(err => {
     console.error('MongoDB connection error:', err.message);

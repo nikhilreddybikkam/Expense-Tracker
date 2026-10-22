@@ -17,8 +17,8 @@ export default function Navbar() {
 
       {/* Today's Date in Middle */}
       <div className="navbar-date">
-        <span>📅</span>
-        <span>{todayStr}</span>
+        
+         <span >{todayStr}</span>
       </div>
 
       {/* Nav Links */}

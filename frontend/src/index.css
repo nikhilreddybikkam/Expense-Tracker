@@ -1,5 +1,8 @@
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -23,7 +26,9 @@ body {
 }
 
 @media (max-width: 600px) {
-  .container main { padding: 0 16px; }
+  .container main {
+    padding: 0 16px;
+  }
 }
 
 /* ── Navbar ── */
@@ -50,10 +55,8 @@ body {
   color: rgb(148, 163, 184);
   font-size: 13px;
   font-weight: 500;
-  background: rgb(30, 41, 59);
+  background: transparent;
   padding: 6px 16px;
-  border-radius: 20px;
-  border: 1px solid rgb(51, 65, 85);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -228,10 +231,21 @@ body {
   font-weight: 600;
 }
 
-.stat-note.income { color: rgb(22, 163, 74); }
-.stat-note.expense { color: rgb(220, 38, 38); }
-.stat-note.positive { color: rgb(22, 163, 74); }
-.stat-note.negative { color: rgb(220, 38, 38); }
+.stat-note.income {
+  color: rgb(22, 163, 74);
+}
+
+.stat-note.expense {
+  color: rgb(220, 38, 38);
+}
+
+.stat-note.positive {
+  color: rgb(22, 163, 74);
+}
+
+.stat-note.negative {
+  color: rgb(220, 38, 38);
+}
 
 /* Charts row */
 .charts-grid {
@@ -284,8 +298,13 @@ body {
   display: inline-block;
 }
 
-.legend-dot.income { background: rgb(96, 165, 250); }
-.legend-dot.expense { background: rgb(29, 78, 216); }
+.legend-dot.income {
+  background: rgb(96, 165, 250);
+}
+
+.legend-dot.expense {
+  background: rgb(29, 78, 216);
+}
 
 /* Chart view sub-toggle (Days / Months) */
 .chart-subtoggle {
@@ -358,7 +377,9 @@ body {
   max-width: 520px;
 }
 
-.form-group { margin-bottom: 16px; }
+.form-group {
+  margin-bottom: 16px;
+}
 
 .form-group label {
   display: block;
@@ -392,9 +413,17 @@ body {
 }
 
 @media (max-width: 600px) {
-  .form-row { grid-template-columns: 1fr; }
-  .stat-grid { grid-template-columns: 1fr; }
-  .charts-grid { grid-template-columns: 1fr; }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Buttons ── */
@@ -416,7 +445,9 @@ body {
   transition: 0.2s all;
 }
 
-.btn-primary:hover { background: rgb(30, 41, 59); }
+.btn-primary:hover {
+  background: rgb(30, 41, 59);
+}
 
 .btn-primary.full-width {
   width: 100%;
@@ -441,10 +472,16 @@ body {
   transition: 0.2s all;
 }
 
-.btn-secondary:hover { background: rgb(226, 232, 240); }
+.btn-secondary:hover {
+  background: rgb(226, 232, 240);
+}
 
 /* Type toggle (Expense / Income) */
-.type-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+.type-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
 
 .type-toggle button {
   flex: 1;
@@ -499,7 +536,10 @@ body {
   font-size: 13px;
 }
 
-.filter-tabs { display: flex; gap: 8px; }
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+}
 
 .filter-tabs button {
   padding: 7px 16px;
@@ -579,7 +619,9 @@ body {
   transition: 0.2s all;
 }
 
-.action-btn.edit:hover { background: rgb(224, 231, 255); }
+.action-btn.edit:hover {
+  background: rgb(224, 231, 255);
+}
 
 .action-btn.delete {
   border-color: rgb(252, 165, 165);
@@ -587,7 +629,9 @@ body {
   background: rgb(254, 226, 226);
 }
 
-.action-btn.delete:hover { background: rgb(254, 202, 202); }
+.action-btn.delete:hover {
+  background: rgb(254, 202, 202);
+}
 
 /* ── Alerts & Empty State ── */
 

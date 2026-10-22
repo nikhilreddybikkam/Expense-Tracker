@@ -79,14 +79,14 @@ export default function AddTransaction() {
               className={formData.type === 'expense' ? 'active-expense' : ''}
               onClick={() => handleTypeChange('expense')}
             >
-              💸 Expense
+              Expense
             </button>
             <button
               type="button"
               className={formData.type === 'income' ? 'active-income' : ''}
               onClick={() => handleTypeChange('income')}
             >
-              💰 Income
+              Income
             </button>
           </div>
 
