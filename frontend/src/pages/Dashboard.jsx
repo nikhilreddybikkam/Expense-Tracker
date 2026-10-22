@@ -107,21 +107,16 @@ export default function Dashboard() {
         <div className="card">
           <p className="stat-label">Total Income</p>
           <p className="stat-amount">{formatRupee(summary.totalIncome)}</p>
-          <p className="stat-note income">↑ Money earned</p>
         </div>
 
         <div className="card">
           <p className="stat-label">Total Expenses</p>
           <p className="stat-amount">{formatRupee(summary.totalExpense)}</p>
-          <p className="stat-note expense">↓ Money spent</p>
         </div>
 
         <div className="card">
           <p className="stat-label">Net Balance</p>
           <p className="stat-amount">{formatRupee(summary.balance)}</p>
-          <p className={balancePositive ? 'stat-note positive' : 'stat-note negative'}>
-            {balancePositive ? '✓ Positive savings' : '⚠ Overspent'}
-          </p>
         </div>
 
       </div>
