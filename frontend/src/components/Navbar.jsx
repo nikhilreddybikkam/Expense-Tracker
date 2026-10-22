@@ -13,7 +13,7 @@ export default function Navbar() {
     <header className="navbar">
 
       {/* Brand */}
-      <span className="navbar-brand">₹ Expense Tracker</span>
+      <span className="navbar-brand">Expense Tracker</span>
 
       {/* Today's Date in Middle */}
       <div className="navbar-date">
