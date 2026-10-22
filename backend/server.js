@@ -338,15 +338,24 @@ async function seedInitialData() {
 }
 
 // Connect to MongoDB and start server
-mongoose
-  .connect(MONGO_URI)
-  .then(async () => {
-    console.log('Connected to MongoDB successfully');
-    await seedInitialData();
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+if (process.env.NODE_ENV !== 'production') {
+  mongoose
+    .connect(MONGO_URI)
+    .then(async () => {
+      console.log('Connected to MongoDB successfully');
+      await seedInitialData();
+      app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.error('MongoDB connection error:', err.message);
     });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err.message);
-  });
+} else {
+  // For Vercel Serverless
+  mongoose.connect(MONGO_URI).then(async () => {
+    await seedInitialData();
+  }).catch(err => console.error(err));
+}
+
+module.exports = app;
