@@ -1,0 +1,653 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: rgb(241, 245, 249);
+  color: rgb(30, 41, 59);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── Layout ── */
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 0 36px 0;
+}
+
+.container main {
+  padding: 0 40px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container main { padding: 0 16px; }
+}
+
+/* ── Navbar ── */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(15, 23, 42);
+  padding: 0 40px;
+  height: 68px;
+  margin-bottom: 28px;
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.navbar-date {
+  color: rgb(148, 163, 184);
+  font-size: 13px;
+  font-weight: 500;
+  background: rgb(30, 41, 59);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgb(51, 65, 85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-date span {
+  color: rgb(241, 245, 249);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-link {
+  color: rgb(148, 163, 184);
+  background: transparent;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  transition: 0.2s all;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link.active {
+  color: white;
+  background: rgb(30, 41, 59);
+}
+
+/* ── Card ── */
+
+.card {
+  background: white;
+  border: 1px solid rgb(226, 232, 240);
+  border-radius: 12px;
+  padding: 22px 26px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(15, 23, 42);
+}
+
+.card-title-count {
+  font-size: 13px;
+  color: rgb(100, 116, 139);
+  font-weight: normal;
+}
+
+/* ── Dashboard ── */
+
+.dashboard-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Top bar */
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dashboard-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* View toggle pill (Month / Overall) */
+.view-toggle {
+  display: flex;
+  background: rgb(226, 232, 240);
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.view-toggle-btn {
+  padding: 7px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: rgb(71, 85, 105);
+  border: none;
+  transition: 0.2s all;
+  font-family: inherit;
+}
+
+.view-toggle-btn.active {
+  background: rgb(37, 99, 235);
+  color: white;
+}
+
+/* Month input */
+.month-input {
+  border: 1px solid rgb(203, 213, 225);
+  background: white;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  outline: none;
+  color: rgb(15, 23, 42);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Add Transaction link button */
+.btn-add-transaction {
+  background: rgb(15, 23, 42);
+  color: white;
+  text-decoration: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: 0.2s background;
+}
+
+.btn-add-transaction:hover {
+  background: rgb(30, 41, 59);
+}
+
+/* Stat cards grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: rgb(100, 116, 139);
+  margin-bottom: 10px;
+}
+
+.stat-amount {
+  font-size: 32px;
+  font-weight: 800;
+  color: rgb(15, 23, 42);
+  margin-bottom: 6px;
+}
+
+.stat-note {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stat-note.income { color: rgb(22, 163, 74); }
+.stat-note.expense { color: rgb(220, 38, 38); }
+.stat-note.positive { color: rgb(22, 163, 74); }
+.stat-note.negative { color: rgb(220, 38, 38); }
+
+/* Charts row */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+}
+
+/* Chart card header */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(15, 23, 42);
+}
+
+.chart-subtitle {
+  font-size: 12px;
+  color: rgb(148, 163, 184);
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(71, 85, 105);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.legend-dot.income { background: rgb(96, 165, 250); }
+.legend-dot.expense { background: rgb(29, 78, 216); }
+
+/* Chart view sub-toggle (Days / Months) */
+.chart-subtoggle {
+  display: flex;
+  background: rgb(241, 245, 249);
+  padding: 2px;
+  border-radius: 6px;
+}
+
+.chart-subtoggle-btn {
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: rgb(100, 116, 139);
+  border: none;
+  transition: 0.2s all;
+  font-family: inherit;
+}
+
+.chart-subtoggle-btn.active {
+  background: rgb(37, 99, 235);
+  color: white;
+}
+
+/* Pie chart section */
+.pie-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(15, 23, 42);
+  margin-bottom: 2px;
+}
+
+.pie-subtitle {
+  font-size: 12px;
+  color: rgb(148, 163, 184);
+  margin-bottom: 12px;
+}
+
+.pie-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pie-inner {
+  width: 100%;
+  height: 300px;
+}
+
+/* Loading text in chart */
+.chart-loading {
+  text-align: center;
+  padding: 50px;
+  color: rgb(148, 163, 184);
+}
+
+/* ── Forms ── */
+
+.add-transaction-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px 16px;
+}
+
+.add-transaction-card {
+  width: 100%;
+  max-width: 520px;
+}
+
+.form-group { margin-bottom: 16px; }
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(55, 65, 81);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgb(203, 213, 225);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+  font-family: inherit;
+  color: rgb(30, 41, 59);
+}
+
+.form-control:focus {
+  border-color: rgb(37, 99, 235);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .charts-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Buttons ── */
+
+.btn-primary {
+  font-family: inherit;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgb(15, 23, 42);
+  border: 1px solid rgb(15, 23, 42);
+  color: white;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  transition: 0.2s all;
+}
+
+.btn-primary:hover { background: rgb(30, 41, 59); }
+
+.btn-primary.full-width {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.btn-secondary {
+  font-family: inherit;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgb(248, 250, 252);
+  border: 1px solid rgb(203, 213, 225);
+  color: rgb(30, 41, 59);
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: 0.2s all;
+}
+
+.btn-secondary:hover { background: rgb(226, 232, 240); }
+
+/* Type toggle (Expense / Income) */
+.type-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+
+.type-toggle button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgb(203, 213, 225);
+  background: rgb(248, 250, 252);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s all;
+}
+
+.type-toggle button.active-expense {
+  background: rgb(254, 226, 226);
+  border-color: rgb(239, 68, 68);
+  color: rgb(220, 38, 38);
+}
+
+.type-toggle button.active-income {
+  background: rgb(220, 252, 231);
+  border-color: rgb(34, 197, 94);
+  color: rgb(22, 163, 74);
+}
+
+/* ── History Table ── */
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.filter-bar-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-bar-sort label {
+  font-size: 13px;
+  color: rgb(100, 116, 139);
+}
+
+.filter-bar-sort select {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.filter-tabs { display: flex; gap: 8px; }
+
+.filter-tabs button {
+  padding: 7px 16px;
+  font-size: 13px;
+  border: 1px solid rgb(203, 213, 225);
+  background: rgb(248, 250, 252);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s all;
+}
+
+.filter-tabs button.active {
+  background: rgb(15, 23, 42);
+  color: white;
+  border-color: rgb(15, 23, 42);
+}
+
+/* History Table — bordered like <table border="1"> */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.history-table th,
+.history-table td {
+  border: 1px solid rgb(203, 213, 225);
+  padding: 10px 14px;
+}
+
+.history-table thead tr {
+  background: rgb(241, 245, 249);
+  color: rgb(71, 85, 105);
+  font-weight: 600;
+}
+
+.history-table tbody tr:hover {
+  background: rgb(248, 250, 252);
+}
+
+.history-table .col-amount {
+  text-align: right;
+  font-weight: 600;
+  color: rgb(15, 23, 42);
+  white-space: nowrap;
+}
+
+.history-table .col-actions {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.history-table .col-category {
+  font-weight: 600;
+}
+
+.history-table .col-date {
+  white-space: nowrap;
+}
+
+.history-table .col-note-empty {
+  color: rgb(148, 163, 184);
+}
+
+/* Action buttons */
+.action-btn {
+  background: transparent;
+  border: 1px solid rgb(203, 213, 225);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 6px;
+  font-family: inherit;
+  transition: 0.2s all;
+}
+
+.action-btn.edit:hover { background: rgb(224, 231, 255); }
+
+.action-btn.delete {
+  border-color: rgb(252, 165, 165);
+  color: rgb(220, 38, 38);
+  background: rgb(254, 226, 226);
+}
+
+.action-btn.delete:hover { background: rgb(254, 202, 202); }
+
+/* ── Alerts & Empty State ── */
+
+.alert-box {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.alert-success {
+  background: rgb(220, 252, 231);
+  border: 1px solid rgb(134, 239, 172);
+  color: rgb(22, 101, 52);
+}
+
+.alert-error {
+  background: rgb(254, 226, 226);
+  border: 1px solid rgb(252, 165, 165);
+  color: rgb(153, 27, 27);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: rgb(100, 116, 139);
+  font-size: 14px;
+}
+
+/* ── Modal ── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgb(203, 213, 225);
+  padding: 26px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  margin-bottom: 18px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
