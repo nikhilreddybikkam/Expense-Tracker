@@ -15,6 +15,33 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Serverless DB Connection Helper
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected || mongoose.connection.readyState === 1) {
+    isConnected = true;
+    return;
+  }
+  const db = await mongoose.connect(MONGO_URI, {
+    serverSelectionTimeoutMS: 5000 // fail fast if wrong IP or credentials
+  });
+  isConnected = db.connections[0].readyState === 1;
+};
+
+// Ensure DB connected on every request
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message);
+    return res.status(500).json({
+      message: 'Failed to connect to MongoDB Atlas. Check MONGO_URI and Network Access in Atlas.',
+      error: err.message
+    });
+  }
+});
+
 // Helper to construct date range from "YYYY-MM"
 const getDateRangeForMonth = (monthStr) => {
   if (!monthStr || monthStr === 'all') return null;
@@ -337,25 +364,16 @@ async function seedInitialData() {
   }
 }
 
-// Connect to MongoDB and start server
-if (process.env.NODE_ENV !== 'production') {
-  mongoose
-    .connect(MONGO_URI)
-    .then(async () => {
-      console.log('Connected to MongoDB successfully');
-      await seedInitialData();
-      app.listen(PORT, () => {
-        console.log(`Server running at http://localhost:${PORT}`);
-      });
-    })
-    .catch((err) => {
-      console.error('MongoDB connection error:', err.message);
-    });
-} else {
-  // For Vercel Serverless
-  mongoose.connect(MONGO_URI).then(async () => {
+// Start server locally
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  connectDB().then(async () => {
     await seedInitialData();
-  }).catch(err => console.error(err));
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  }).catch(err => {
+    console.error('MongoDB connection error:', err.message);
+  });
 }
 
 module.exports = app;
